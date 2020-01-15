@@ -1,5 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const cors = require('cors');
 const routes = require('./routes');
 
 //inicia o servidor 
@@ -10,6 +11,10 @@ mongoose.connect('mongodb+srv://usermongo:usermongo@cluster0-amq7j.mongodb.net/o
     useNewUrlParser: true,
     useUnifiedTopology: true
 });
+
+//Libera o cors
+app.use(cors({ origin: '*' }));
+//app.use(cors());
 
 //aplica para todas as rotas da aplicação o formato do corpo da requisição em json
 app.use(express.json());

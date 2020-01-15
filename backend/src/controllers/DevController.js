@@ -14,9 +14,8 @@ module.exports = {
     async store(request, response){
         //destructing operator no body da req
         const { github_username, techs, latitude, longitude } =  request.body;
-
         let dev = await Dev.findOne( { github_username });
-
+        
         if(!dev){
             //faz a requisição para api 
             const apiResponse = await axios.get(`https://api.github.com/users/${github_username}`);
@@ -29,7 +28,7 @@ module.exports = {
                 type: 'Point',
                 coordinates: [longitude, latitude]
             }
-        
+
             //usa short sintax como o nome da propriedade e da variavel é o mesmo fica opcional
             //exceto no caso de techs que o valor da propriedade esta em uma variavel de nome diferente 
             dev = await Dev.create({
@@ -40,7 +39,6 @@ module.exports = {
                 techs: techsArray,
                 location
             });
-    
         }
        
         return response.json(dev);

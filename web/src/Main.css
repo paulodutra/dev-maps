@@ -1,0 +1,18 @@
+main {
+   flex: 1; 
+}
+
+main ul {
+   display: grid;
+    /* Cada elemento da lista ira ocupar 50% ou seja 2 quadros(frames) por coluna */
+   grid-template-columns: repeat(2, 1fr); 
+   gap: 20px;
+   list-style: none;
+}
+
+@media(max-width: 650px){
+    main ul {
+        grid-template-columns: 1fr;
+    }
+}
+

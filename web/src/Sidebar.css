@@ -1,0 +1,83 @@
+aside {
+    width: 320px;
+    background: #FFF;
+    box-shadow: 0 0 14px 0 rgba(0, 0, 0, 0.2);
+    border-radius: 2px;
+    /*30 px: top and bottom 20px: right and left */
+    padding: 30px 20px;
+
+}
+
+aside strong {
+    font-size: 20px;
+    text-align: center;
+    display: block;
+    color: #333;
+}
+
+/* form */
+aside form {
+    margin-top: 30px;
+}
+/* Encontre um input block que tenha um input block antes dele ou seja irá pergar o segundo em diante */
+aside form .input-block + .input-block{
+    margin-top: 20px; 
+}
+
+/* input-block tira o espaçamento dos inputs de latitude e longitude */
+aside form .input-group .input-block {
+   margin-top: 0; 
+}
+
+/*.input-group usado para deixar dois inputs na mesma linha */
+aside form .input-group {
+    margin-top: 20px;
+    display: grid;
+    /* Espaçamento entre os inputs do grid */
+    gap: 20px;
+    /* Cada input ira ocupar 50% ou seja 2 quadros(frames) por coluna */
+    grid-template-columns: 1fr 1fr;
+}
+
+/* Label */
+aside form .input-block label {
+    color: #ACACAC;
+    font-size: 14px;
+    font-weight: bold;
+    display: block;
+}
+
+/* Input */
+aside form .input-block input {
+    width: 100%;
+    height: 32px;
+    font-size: 14px;
+    color: #666666;
+    border: 0;
+    border-bottom: 1px solid #eee;
+
+}
+
+/* Button submit */
+aside form button[type=submit] {
+   width: 100%;
+   /* O button submit vem com margin por padrão */
+   border: 0; 
+   margin-top: 30px;
+   background: #7d40e7;
+   border-radius: 2px;
+    /*15 px: top and bottom 20px: right and left */
+   padding: 15px 20px;
+   font-size: 16px;
+   font-weight: bold;
+   color: #FFF;
+   /* Quando passar o mouse por cima, ele ficar com o icone de mão */
+   cursor: pointer;
+   /* Transição aplicada ao backgroud quando o hover troca o background */
+   transition: background 0.5s;
+}
+
+/* Button submit hover */
+aside form button[type=submit]:hover {
+    background: #6931ca;
+}
