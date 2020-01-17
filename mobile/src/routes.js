@@ -16,6 +16,7 @@ import Profile from './pages/Profile';
  * 
  * defaultNavigationOptions (opções padrão que se aplicam a todos os itens de navegação)
  * headerTintColor: Propriedade do container de navegação que define a cor do texto
+ * headerBackTitleVisible: Titulo no Header das outras telas sem ser a principal
  */
 const Routes = createAppContainer(
     createStackNavigator({
@@ -34,6 +35,7 @@ const Routes = createAppContainer(
     }, {
         defaultNavigationOptions: {
             headerTintColor: '#FFF',
+            headerBackTitleVisible: false,
             headerStyle: {
                 backgroundColor: '#7D40E7'
             }
