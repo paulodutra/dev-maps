@@ -5,6 +5,7 @@ import { requestPermissionsAsync, getCurrentPositionAsync } from 'expo-location'
 import { MaterialIcons } from '@expo/vector-icons';
 
 import api from '../services/api';
+import { connect, disconnect, subscribeToNewDevs } from '../services/socket';
 
 
 
@@ -55,8 +56,31 @@ function Main({ navigation }) {
         }
         //carrega a localização inicial
         loadInitialPosition();
-    });
+    },[]);
 
+
+    /**
+     * UseEffect: responsável por após atualizar o estado de devs, enviar chamar o 
+     * método de notificar os clientes websocket e atualiza os dados do estado novamente
+     */
+    useEffect(() =>{
+        subscribeToNewDevs(dev => setDevs([...devs, dev]));
+    }, [devs]);
+
+    //configura a conexão socket a mesma é chamada ao pesquisar uma tecnologia
+    function setupWebSocket(){
+        //desconecta do websocket para não fazer mais de uma conexão por cliente
+        disconnect();
+        const { latitude, longitude } = currentRegion;
+        //conecta passando os dados para o servidor de socket
+        connect(
+            latitude, 
+            longitude,
+            techs
+        );
+    }
+
+    //faz a busca dos devs
     async function loadDevs() {
         // obtem a latitude e longitude do usuario
        const { latitude, longitude } = currentRegion;
@@ -69,10 +93,9 @@ function Main({ navigation }) {
             }
        });
 
-       console.log(response.data)
-
-       //atualiza o estado
+        //atualiza o estado
        setDevs(response.data.devs);
+       setupWebSocket();
 
 
     }

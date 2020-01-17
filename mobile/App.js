@@ -1,7 +1,13 @@
 import React from 'react';
-import { StatusBar } from 'react-native';
+import { StatusBar, YellowBox } from 'react-native';
 
 import Routes from './src/routes';
+
+//ignora o aviso do socket.io para o react-native
+
+YellowBox.ignoreWarnings([
+  'Unrecognired WebSocket'
+])
 
 /**
  * StatusBar: Barra de status superior que apresenta as informações relacionada
